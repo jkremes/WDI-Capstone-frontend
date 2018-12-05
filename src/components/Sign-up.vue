@@ -30,10 +30,8 @@
         </form>
         </div>
         <div>
-<!-- <div>
-  <tree-view :data="jsonSource" :options="{maxDepth: 3}"></tree-view>
-</div> -->
- </div>
+          <router-link to="/">Go Back</router-link>
+    </div>
     </div>
 </template>
 
@@ -52,9 +50,6 @@ export default {
     methods: {
       async signUp (e) {
         e.preventDefault()
-        console.log(JSON.stringify(e))
-        console.log(e)
-        // e.preventDefault()
         await APIService.signUp({
           name: this.name,
           email: this.email,
@@ -62,11 +57,10 @@ export default {
           password_confirmation: this.password_confirmation
         })
         this.$swal(
-          'Great!',
-          `User has been added!`,
+          'Right on!',
+          `${this.name}, you've been added!`,
           'success'
         )
-        console.log({ name: 'sign-up' })
         this.$router.push({ name: 'sign-up' })
       }
     }

@@ -1,13 +1,16 @@
 <template>
-  <div class="hello">
+  <div class="register">
     <h1>{{ msg }}</h1>
-    <router-link to="/Sign-up">Sign-Up!</router-link>
+    <div>
+    <router-link to="/Sign-up">Sign-up</router-link> |
+    <router-link to="/Login">Login</router-link>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'Welcome',
   props: {
     msg: String
   }

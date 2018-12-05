@@ -1,18 +1,18 @@
 <template>
   <div class="home">
     <img alt="cmDr" src="../assets/cmDr3.jpeg">
-    <HelloWorld msg="Welcome to the Command Dr."/>
+    <Welcome msg="Welcome to the Command Doctor!"/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import Welcome from '../components/Welcome.vue'
 
 export default {
   name: 'home',
   components: {
-    HelloWorld
+    Welcome
   }
 }
 </script>
