@@ -1,13 +1,8 @@
 <template>
     <div>
-        <h1>Sign Up!</h1>
+        <h1>Login</h1>
         <div>
         <form>
-            <label for="name">Name</label>
-            <div>
-                <input id="name" type="text" v-model="name" required autofocus>
-            </div>
-
             <label for="email" >E-Mail Address</label>
             <div>
                 <input id="email" type="email" v-model="email" required>
@@ -17,14 +12,9 @@
             <div>
                 <input id="password" type="password" v-model="password" required>
             </div>
-            
-            <label for="password-confirm">Confirm Password</label>
             <div>
-                <input id="password-confirm" type="password" v-model="password_confirmation" required>
-            </div>
-            <div>
-                <button type="submit" @click="signUp">
-                    Register
+                <button type="submit" @click="signIn">
+                    Login
                 </button>
             </div>
         </form>
@@ -39,31 +29,46 @@
 <script>
 import APIService from '../services/APIService'
 export default {
-    name: 'sign-up',
+    name: 'loginComponent',
     data () {
       return {
-        name: '',
         email: '',
-        password: '',
-        password_confirmation: ''
+        password: ''
       }
     },
     methods: {
-      async signUp (e) {
+      async signIn (e) {
         e.preventDefault()
-        await APIService.signUp({
-          name: this.name,
+        await APIService.signIn({
           email: this.email,
           password: this.password,
-          password_confirmation: this.password_confirmation
+        }).then(resp => {
+          console.log(resp)
+          console.log(resp.data.user.token)
+          this.$store.state.user = resp.data.user
+          this.$store.state.token = resp.data.user.token
+          console.log(this.$store.state.user)
+          console.log(this.$store.state.token)
         })
         this.$swal(
           'Right on!',
-          `${this.name}, you've been added!`,
+          `You are loggin in ${this.name}!`,
           'success'
         )
-        this.$router.push({ name: 'login' })
+        // this.$store.dispatch('login', { email, password })
+        // this.$store.dispatch(AUTH_REQUEST, { username, password }).then(() => {
+        //   this.$router.push({ name: 'index' })
+        // })
+        this.$router.push({ name: 'index' })
       }
+		 	// signIn: function (e) {
+      //     e.preventDefault()
+		  //  		let email = this.email 
+		  //  		let password = this.password
+		  //  		this.$store.dispatch('login', { email, password })
+		  //  		.then(() => this.$router.push('/'))
+		  //  		.catch(err => console.log(err))
+		  //  	}
     }
 }
 </script>

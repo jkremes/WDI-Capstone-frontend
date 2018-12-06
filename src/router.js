@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import SignUp from './views/Sign-up.vue'
+import SignUp from './components/Sign-up.vue'
+import Login from './components/Login.vue'
+import Index from './views/Index.vue'
 
 Vue.use(Router)
 
@@ -23,8 +25,18 @@ export default new Router({
     },
     {
       path: '/sign-up',
-      name: 'Sign-up',
+      name: 'sign-up',
       component: SignUp
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '/index',
+      name: 'index',
+      component: Index
     }
   ]
 })

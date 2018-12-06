@@ -1,19 +1,31 @@
 <template>
-  <div class="register">
+  <div class="index">
     <h1>{{ msg }}</h1>
-    <div>
-    <router-link to="/sign-up">Sign-up</router-link> |
-    <router-link to="/login">Login</router-link>
-    </div>
+    <h3>Do stuff now!</h3>
+    <button type="submit" @click="signOut">Sign Out!</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Welcome',
+  name: 'indexComponent',
   props: {
     msg: String
+  },
+  data () {
+      return {
+        email: '',
+        password: ''
+      }
+    },
+  methods: {
+      async signOut (e) {
+        e.preventDefault()
+        await APIService.signOut({
+
+        })
   }
+}
 }
 </script>
 
