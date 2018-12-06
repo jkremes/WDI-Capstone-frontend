@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import SignUp from './components/Sign-up.vue'
 import Login from './components/Login.vue'
 import Index from './views/Index.vue'
+import Troops from './views/Troops.vue'
 
 Vue.use(Router)
 
@@ -37,6 +38,11 @@ export default new Router({
       path: '/index',
       name: 'index',
       component: Index
+    },
+    {
+      path: '/troops',
+      name: 'troops',
+      component: Troops
     }
   ]
 })

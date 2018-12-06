@@ -1,11 +1,15 @@
 <template>
+<v-app>
   <div id="app">
+      <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' rel="stylesheet">
+
     <!-- <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div> -->
     <router-view/>
   </div>
+</v-app>
 </template>
 
 <style>
@@ -18,3 +22,4 @@
   margin-top: 60px;
 }
 </style>
+
