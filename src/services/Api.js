@@ -1,7 +1,9 @@
 import axios from 'axios'
+import config from '../config'
 
 export default() => {
   return axios.create({
-    baseURL: `http://localhost:4741`
+    baseURL: config.apiUrl
+    // baseURL: `http://localhost:4741`
   })
 }

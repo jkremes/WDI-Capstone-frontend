@@ -29,7 +29,7 @@
 <script>
 import APIService from '../services/APIService'
 export default {
-    name: 'loginComponent',
+    name: 'login',
     data () {
       return {
         email: '',
@@ -57,20 +57,8 @@ export default {
           `You are now logged in.`,
           'success'
         )
-        // this.$store.dispatch('login', { email, password })
-        // this.$store.dispatch(AUTH_REQUEST, { username, password }).then(() => {
-        //   this.$router.push({ name: 'index' })
-        // })
         this.$router.push({ name: 'index' })
       }
-		 	// signIn: function (e) {
-      //     e.preventDefault()
-		  //  		let email = this.email 
-		  //  		let password = this.password
-		  //  		this.$store.dispatch('login', { email, password })
-		  //  		.then(() => this.$router.push('/'))
-		  //  		.catch(err => console.log(err))
-		  //  	}
     }
 }
 </script>

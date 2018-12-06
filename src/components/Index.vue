@@ -2,11 +2,13 @@
   <div class="index">
     <h1>{{ msg }}</h1>
     <h3>Do stuff now!</h3>
+    <button type="submit" @click="changePassword">Change Password</button>
     <button type="submit" @click="signOut">Sign Out!</button>
   </div>
 </template>
 
 <script>
+import APIService from '../services/APIService'
 export default {
   name: 'indexComponent',
   props: {
@@ -14,16 +16,22 @@ export default {
   },
   data () {
       return {
-        email: '',
-        password: ''
+        token: '',
       }
     },
   methods: {
-      async signOut (e) {
+    async signOut (e) {
         e.preventDefault()
         await APIService.signOut({
-
         })
+        .then(console.log('you successfully logged out'))
+
+  },
+  async changePassword (e) {
+      e.preventDefault()
+      await APIService.changePassword({
+            token: this.$store.state.token
+      })
   }
 }
 }
