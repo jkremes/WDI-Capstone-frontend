@@ -47,12 +47,14 @@ export default {
           console.log(resp.data.user.token)
           this.$store.state.user = resp.data.user
           this.$store.state.token = resp.data.user.token
+          this.$store.state.name = resp.data.user.name
           console.log(this.$store.state.user)
           console.log(this.$store.state.token)
+          console.log(this.$store.state.name)
         })
         this.$swal(
-          'Right on!',
-          `You are loggin in ${this.name}!`,
+          `Hi, ${this.$store.state.name}!`,
+          `You are now logged in.`,
           'success'
         )
         // this.$store.dispatch('login', { email, password })
