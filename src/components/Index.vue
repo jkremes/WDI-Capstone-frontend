@@ -2,8 +2,26 @@
   <div class="index">
     <h1>{{ msg }}</h1>
     <h3>Do stuff now!</h3>
-    <button type="submit" @click="changePassword">Change Password</button>
+    <button  v-on:click="seen = !seen">Change Password</button>
     <button type="submit" @click="signOut">Sign Out!</button>
+    <div v-if="seen">
+        <form>
+            <label for="old_password" >Old Password</label>
+            <div>
+                <input id="oldPassword" type="password" v-model="old_password" required>
+            </div>
+             
+            <label for="password">New Password</label>
+            <div>
+                <input id="newPassword" type="password" v-model="new_password" required>
+            </div>
+            <div>
+                <button type="submit" @click="changePassword">
+                    Submit
+                </button>
+            </div>
+        </form>
+    </div>
   </div>
 </template>
 
@@ -17,6 +35,9 @@ export default {
   data () {
       return {
         token: '',
+        seen: false,
+        old_password: '',
+        new_password: ''
       }
     },
   methods: {
@@ -30,7 +51,8 @@ export default {
   async changePassword (e) {
       e.preventDefault()
       await APIService.changePassword({
-            token: this.$store.state.token
+          old_password: this.old_password,
+          new_password: this.new_password
       })
   }
 }

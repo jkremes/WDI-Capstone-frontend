@@ -9,10 +9,11 @@ export default {
     return Api().post('sign-in', params)
   },
   signOut () {
-    let params = store.state.token
-    return Api().delete('/sign-out', { headers: {"Authorization" : `Bearer ${params}`} })
+    let token = store.state.token
+    return Api().delete('/sign-out', { headers: {"Authorization" : `Bearer ${token}`} })
   },
   changePassword (params) {
-    return Api().patch('change-password', params)
+    let token = store.state.token
+    return Api().patch('change-password', params, { headers: {"Authorization" : `Bearer ${token}`} })
   }
 }
