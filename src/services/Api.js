@@ -3,7 +3,11 @@ import config from '../config'
 
 export default() => {
   return axios.create({
-    baseURL: config.apiUrl
+    // baseURL: config.apiUrl
     // baseURL: `http://localhost:4741`
+    baseUrl: process.env.NODE_ENV === 'production'
+    ? '/production-sub-path/'
+    : '/'
   })
 }
+
