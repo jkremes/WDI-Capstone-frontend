@@ -30,10 +30,11 @@ export default {
     return Api().delete('/subordinates/' + id, { headers: {"Authorization" : `Bearer ${token}`} })
   },
   updateTroop (params) {
+    console.log(params)
     console.log(params.item)
     let token = store.state.token
-    let id = params.item._id
+    let id = params._id
     console.log(id)
-    return Api().patch('/subordinates/' + id, params.item, { headers: {"Authorization" : `Bearer ${token}`} })
+    return Api().patch('/subordinates/' + id, params, { headers: {"Authorization" : `Bearer ${token}`} })
   }
 }

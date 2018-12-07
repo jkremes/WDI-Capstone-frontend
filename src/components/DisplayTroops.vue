@@ -23,10 +23,10 @@
         ></v-divider>
         <v-spacer></v-spacer>
         <v-dialog v-model="dialog" max-width="500px">
-          <v-btn slot="activator" color="primary" dark class="mb-2">New Item</v-btn> -->
+          <v-btn slot="activator" color="primary" dark class="mb-2">New Item</v-btn>
           <v-card>
             <v-card-title>
-              <span class="headline">Troop</span>
+              <span class="headline">New Troop</span>
             </v-card-title>
   
             <v-card-text>
@@ -92,13 +92,11 @@
           
         </template>
         <template slot="no-data">
-          <v-btn color="primary" @click="getTroops">Reset</v-btn>
-        </template>
-        <template slot="no-data">
       <v-alert :value="true" color="error" icon="warning">
         Sorry, nothing to display here :(
       </v-alert>
     </template>
+          <v-btn color="primary" @click="getTroops">Reset</v-btn>
       </v-data-table>
     </div>
   </v-app>
@@ -129,6 +127,7 @@ export default {
       subordinates: [],
       desserts: [],
       props: [],
+      troop: {},
       editedIndex: -1,
       editedItem: {
       first_name: '',
@@ -140,6 +139,7 @@ export default {
     list: [],
     shadowList: [],
     dialog: false,
+    dialogTwo: false,
     headers: [
 //         {
 //   text: string
@@ -165,6 +165,17 @@ export default {
   mounted () {
     this.getTroops()
   },
+    computed: {
+    formTitle () {
+      return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+    }
+  },
+
+  watch: {
+    dialog (val) {
+      val || this.close()
+    }
+  },
   methods: {
       async getTroops () {
       const response = await APIService.getTroops()
@@ -174,26 +185,41 @@ export default {
       console.log(this.shadowList)
       console.log(response.data)
     },
+  //   created () {
+  //   this.initialize()
+  // },
     changeIndex() {
         this.$store.commit('increment')
     },
     async editItem (item) {
         console.log(item)
-    //   this.editedIndex = this.desserts.indexOf(item)
+        this.troop = item
+        console.log(this.troop)
+      this.editedIndex = this.subordinates.indexOf(item)
       this.editedItem = Object.assign({}, item)
     //   console.log(this.editItem)
       this.dialog = true
       const itemID = item._id
-      await APIService.updateTroop({
-        item
-        // params: {
-        //     first_name: item.first_name,
-        //     last_name: item.last_name,
-        //     address: item.address,
-        //     id: itemID
-        // }
-      })
+      // await APIService.updateTroop({
+      //   item
+      //   params: {
+      //       first_name: item.first_name,
+      //       last_name: item.last_name,
+      //       address: item.address,
+      //       id: itemID
+      //   }
+      // })
     },
+    // async updateTroop () {
+    //   console.log(this.troop)
+    //   await APIService.updateTroop(this.troop)
+    //     // params: {
+    //     //     first_name: item.first_name,
+    //     //     last_name: item.last_name,
+    //     //     address: item.address,
+    //     //     id: itemID
+    //     // }
+    // },
     async deleteItem (item) {
         console.log(item)
         console.log(item._id)
@@ -209,19 +235,29 @@ export default {
         this.editedIndex = -1
       }, 300)
     },
-    async save (e) {
-        e.preventDefault()
+    async save () {
+        // e.preventDefault()
+      if (this.editedIndex > -1) {
+        console.log(this.editedItem)
+        console.log(this.item)
+      await APIService.updateTroop({
+        params: this.editedItem
+            // first_name: item.first_name,
+            // last_name: item.last_name,
+            // address: item.address,
+            // id: itemID
+      })
+        // Object.assign(this.desserts[this.editedIndex], this.editedItem)
+      } else {
         await APIService.createTroop({
         // defaultPhoto: this.defaultPhoto
         first_name: this.editedItem.first_name,
         last_name: this.editedItem.last_name,
         address: this.editedItem.address
       })
-    //   if (this.editedIndex > -1) {
-    //     Object.assign(this.desserts[this.editedIndex], this.editedItem)
-    //   } else {
-    //     this.desserts.push(this.editedItem)
-    //   }
+        
+        // this.desserts.push(this.editedItem)
+      }
       this.close()
     },
     // search () {
@@ -241,4 +277,35 @@ export default {
 </script>
 
 
-class="v-input v-text-field v-text-field--single-line v-input--hide-details theme--light"
+// class="v-input v-text-field v-text-field--single-line v-input--hide-details theme--light"
+
+// <v-dialog v-model="dialogTwo" max-width="500px">
+//           <v-btn slot="activator" color="primary" dark class="mb-2">New Item</v-btn>
+//           <v-card>
+//             <v-card-title>
+//               <span class="headline">Adjust Troop</span>
+//             </v-card-title>
+  
+//             <v-card-text>
+//               <v-container grid-list-md>
+//                 <v-layout wrap>
+//                   <v-flex xs12 sm6 md4>
+//                     <v-text-field v-model="editedItem.first_name" label="First Name"></v-text-field>
+//                   </v-flex>
+//                   <v-flex xs12 sm6 md4>
+//                     <v-text-field v-model="editedItem.last_name" label="Last Name"></v-text-field>
+//                   </v-flex>
+//                   <v-flex xs12 sm6 md4>
+//                     <v-text-field v-model="editedItem.address" label="Address"></v-text-field>
+//                   </v-flex>
+//                 </v-layout>
+//               </v-container>
+//             </v-card-text>
+  
+//             <v-card-actions>
+//               <v-spacer></v-spacer>
+//               <v-btn color="blue darken-1" flat @click="close">Cancel</v-btn>
+//               <v-btn color="blue darken-1" flat @click="save">Save</v-btn>
+//             </v-card-actions>
+//           </v-card>
+//         </v-dialog>
