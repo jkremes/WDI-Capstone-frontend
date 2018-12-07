@@ -24,5 +24,9 @@ export default {
     let token = store.state.token
     return Api().get('/subordinates', { headers: {"Authorization" : `Bearer ${token}`} })
     // .then(console.log(response))
+  },
+  deleteTroop (id) {
+    let token = store.state.token
+    return Api().delete('/subordinates/' + id, { headers: {"Authorization" : `Bearer ${token}`} })
   }
 }

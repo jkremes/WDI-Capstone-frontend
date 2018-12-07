@@ -26,26 +26,20 @@
           <v-btn slot="activator" color="primary" dark class="mb-2">New Item</v-btn> -->
           <v-card>
             <v-card-title>
-              <span class="headline">Create Troop</span>
+              <span class="headline">Troop</span>
             </v-card-title>
   
             <v-card-text>
               <v-container grid-list-md>
                 <v-layout wrap>
                   <v-flex xs12 sm6 md4>
-                    <v-text-field v-model="editedItem.name" label="Dessert name"></v-text-field>
+                    <v-text-field v-model="editedItem.first_name" label="First Name"></v-text-field>
                   </v-flex>
                   <v-flex xs12 sm6 md4>
-                    <v-text-field v-model="editedItem.calories" label="Calories"></v-text-field>
+                    <v-text-field v-model="editedItem.last_name" label="Last Name"></v-text-field>
                   </v-flex>
                   <v-flex xs12 sm6 md4>
-                    <v-text-field v-model="editedItem.fat" label="Fat (g)"></v-text-field>
-                  </v-flex>
-                  <v-flex xs12 sm6 md4>
-                    <v-text-field v-model="editedItem.carbs" label="Carbs (g)"></v-text-field>
-                  </v-flex>
-                  <v-flex xs12 sm6 md4>
-                    <v-text-field v-model="editedItem.protein" label="Protein (g)"></v-text-field>
+                    <v-text-field v-model="editedItem.address" label="Address"></v-text-field>
                   </v-flex>
                 </v-layout>
               </v-container>
@@ -65,12 +59,14 @@
         :search="search"
         class="elevation-1"
       >
-        <template slot="items" slot-scope="subordinates" v-for="(subordinate, i) in (subordinates)">
-          <td :key="shadowList[i]">{{ props.first_name }}</td>
-          <td :key="shadowList[i]" class="text-xs-center">{{ subordinate.first_name }}</td>
-          <td :key="shadowList[i]" class="text-xs-center">{{ subordinate.last_name }}</td>
-          <td :key="shadowList[i]" class="text-xs-center">{{ subordinate.address }}</td>
-          <td :key="shadowList[i]" class="justify-center layout px-0">
+       <!-- v-for="(subordinate, i) in (subordinates)" -->
+        <!-- :key="shadowList[i]" -->
+        <template slot="items" slot-scope="props">
+          <td>{{ props.last_name }}</td>
+          <td class="text-xs-center">{{ props.item.first_name }}</td>
+          <td class="text-xs-center">{{ props.item.last_name }}</td>
+          <td class="text-xs-center">{{ props.item.address }}</td>
+          <td class="justify-center layout px-0">
             <v-icon
               small
               class="mr-2"
@@ -90,6 +86,11 @@
         <template slot="no-data">
           <v-btn color="primary" @click="getTroops">Reset</v-btn>
         </template>
+        <template slot="no-data">
+      <v-alert :value="true" color="error" icon="warning">
+        Sorry, nothing to display here :(
+      </v-alert>
+    </template>
       </v-data-table>
     </div>
   </v-app>
@@ -113,15 +114,17 @@ export default {
 //   },
   data () {
     return {
+    //   first_name: '',
+    //   last_name: '',
+    //   address: '',
       subordinates: [],
       desserts: [],
       props: [],
+      editedIndex: -1,
       editedItem: {
-      name: '',
-      calories: 0,
-      fat: 0,
-      carbs: 0,
-      protein: 0
+      first_name: '',
+      last_name: '',
+      address: ''
     //   search: ''
     },
     search: '',
@@ -129,6 +132,14 @@ export default {
     shadowList: [],
     dialog: false,
     headers: [
+//         {
+//   text: string
+//   value: string
+//   align: 'left' | 'center' | 'right'
+//   sortable: boolean
+//   class: string[] | string
+//   width: string
+// }
       {
         text: 'Accounted?',
         align: 'left',
@@ -162,6 +173,14 @@ export default {
       this.editedItem = Object.assign({}, item)
       this.dialog = true
     },
+    async deleteItem (item) {
+        console.log(item)
+        console.log(item._id)
+        const itemID = item._id
+        await APIService.deleteTroop(itemID)
+    //   const index = this.desserts.indexOf(item)
+    //   confirm('Are you sure you want to delete this item?') && this.desserts.splice(index, 1)
+    },
     close () {
       this.dialog = false
       setTimeout(() => {
@@ -169,27 +188,34 @@ export default {
         this.editedIndex = -1
       }, 300)
     },
-    save () {
-      if (this.editedIndex > -1) {
-        Object.assign(this.desserts[this.editedIndex], this.editedItem)
-      } else {
-        this.desserts.push(this.editedItem)
-      }
+    async save (e) {
+        e.preventDefault()
+        await APIService.createTroop({
+        // defaultPhoto: this.defaultPhoto
+        first_name: this.editedItem.first_name,
+        last_name: this.editedItem.last_name,
+        address: this.editedItem.address
+      })
+    //   if (this.editedIndex > -1) {
+    //     Object.assign(this.desserts[this.editedIndex], this.editedItem)
+    //   } else {
+    //     this.desserts.push(this.editedItem)
+    //   }
       this.close()
     },
     // search () {
 
     // }
   },
-  customFilter: {
-  type: Function,
-  default: (items, search, filter) => {
-    this.search = search.toString().toLowerCase()
-    return items.filter(i => (
-      Object.keys(i).some(j => filter(i[j], search))
-    ))
-  }
-},
+//   customFilter: {
+//   type: Function,
+//   default: (items, search, filter) => {
+//     this.search = search.toString().toLowerCase()
+//     return items.filter(i => (
+//       Object.keys(i).some(j => filter(i[j], search))
+//     ))
+//   }
+// },
 }
 </script>
 
