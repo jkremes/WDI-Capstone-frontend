@@ -2,7 +2,7 @@
 
 let apiUrl
 const apiUrls = {
-  production: 'https://limitless-inlet-83543.herokuapp.com',
+  production: 'https://mysterious-mesa-43439.herokuapp.com/',
   development: 'http://localhost:4741'
 }
 
