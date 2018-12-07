@@ -57,12 +57,17 @@ export default {
           password: this.password,
           password_confirmation: this.password_confirmation
         })
-        this.$swal(
+        .then(this.$swal(
           'Right on!',
           `${this.name}, you've been added!`,
           'success'
-        )
-        this.$router.push({ name: 'login' })
+        ))
+        .then(this.$router.push({ name: 'login' }))
+        .catch(this.$swal(
+          'Sorry!',
+          `Something went wrong, try again.`,
+          'failure'
+        ))
       }
     }
 }

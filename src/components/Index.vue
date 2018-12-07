@@ -2,10 +2,10 @@
   <div class="index">
     <h1>{{ msg }}</h1>
     <h3>Do stuff now!</h3>
-    <button  v-on:click="seen = !seen">Change Password</button>
-    <button type="submit" @click="signOut">Sign Out!</button>
+    <button  v-on:click="seen = !seen">Change Password</button> |
+    <button type="submit" @click="signOut">Sign Out!</button> |
     <button @click="seeTroops">See Troops</button>
-     <v-btn color="success">Success</v-btn>
+     <!-- <v-btn color="success">Success</v-btn> -->
     <div v-if="seen">
         <form>
             <label for="old_password" >Old Password</label>
@@ -48,7 +48,7 @@ export default {
         await APIService.signOut({
         })
         .then(console.log('you successfully logged out'))
-
+        this.$router.push({ name: 'home' })
     },
     async changePassword (e) {
         e.preventDefault()

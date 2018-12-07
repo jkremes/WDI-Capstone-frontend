@@ -225,6 +225,7 @@ export default {
         console.log(item._id)
         const itemID = item._id
         await APIService.deleteTroop(itemID)
+        this.getTroops()
     //   const index = this.desserts.indexOf(item)
     //   confirm('Are you sure you want to delete this item?') && this.desserts.splice(index, 1)
     },
@@ -259,6 +260,7 @@ export default {
         // this.desserts.push(this.editedItem)
       }
       this.close()
+      this.getTroops()
     },
     // search () {
 

@@ -3,11 +3,11 @@
     <img alt="cmDr" src="../assets/cmDr3.jpeg">
     <h1>See your troops</h1>
     <!-- <button type="submit" @click="getTroops">display troops</button> -->
-    <v-btn outline fab color="teal">
+    <v-btn outline fab color="teal" @click="getTroops">
       <v-icon>list</v-icon>
     </v-btn>
     <DisplayTroops/>
-    <div>
+    <!-- <div>
       <form>
         <label for="firstName" >First Name</label>
         <div>
@@ -29,7 +29,7 @@
             </button>
         </div>
       </form>
-    </div>
+    </div> -->
     <!-- <Welcome msg="Welcome to the Command Doctor!"/> -->
   </div>
   
