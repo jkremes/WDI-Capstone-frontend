@@ -43,14 +43,14 @@ export default {
           email: this.email,
           password: this.password,
         }).then(resp => {
-          console.log(resp)
-          console.log(resp.data.user.token)
+          // console.log(resp)
+          // console.log(resp.data.user.token)
           this.$store.state.user = resp.data.user
           this.$store.state.token = resp.data.user.token
           this.$store.state.name = resp.data.user.name
-          console.log(this.$store.state.user)
-          console.log(this.$store.state.token)
-          console.log(this.$store.state.name)
+          // console.log(this.$store.state.user)
+          // console.log(this.$store.state.token)
+          // console.log(this.$store.state.name)
         })
         this.$swal(
           `Hi, ${this.$store.state.name}!`,
