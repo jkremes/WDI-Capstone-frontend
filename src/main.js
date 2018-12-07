@@ -6,7 +6,7 @@ import TreeView from "vue-json-tree-view"
 import VueSweetalert2 from 'vue-sweetalert2'
 import Vuex from 'vuex'
 import store from './store'
-import apiUrl from './config'
+// import apiUrl from './config'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css' // Ensure you are using css-loader
