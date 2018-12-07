@@ -9,6 +9,13 @@
     <!-- <div  v-for="(subordinate, i) in subordinates" :key="`${i}-${subordinate.first_name}`"> -->
       <v-toolbar flat color="white">
         <v-toolbar-title>TROOPS</v-toolbar-title>
+        <v-text-field
+        v-model="search"
+        append-icon="search"
+        label="Search"
+        single-line
+        hide-details
+      ></v-text-field>
         <v-divider
           class="mx-2"
           inset
@@ -55,13 +62,14 @@
       <v-data-table
         :headers="headers"
         :items="subordinates"
+        :search="search"
         class="elevation-1"
       >
         <template slot="items" slot-scope="subordinates" v-for="(subordinate, i) in (subordinates)">
           <td :key="shadowList[i]">{{ props.first_name }}</td>
-          <td :key="shadowList[i]" class="text-xs-right">{{ subordinate.first_name }}</td>
-          <td :key="shadowList[i]" class="text-xs-right">{{ subordinate.last_name }}</td>
-          <td :key="shadowList[i]" class="text-xs-right">{{ subordinate.address }}</td>
+          <td :key="shadowList[i]" class="text-xs-center">{{ subordinate.first_name }}</td>
+          <td :key="shadowList[i]" class="text-xs-center">{{ subordinate.last_name }}</td>
+          <td :key="shadowList[i]" class="text-xs-center">{{ subordinate.address }}</td>
           <td :key="shadowList[i]" class="justify-center layout px-0">
             <v-icon
               small
@@ -77,6 +85,7 @@
               delete
             </v-icon>
           </td>
+          
         </template>
         <template slot="no-data">
           <v-btn color="primary" @click="getTroops">Reset</v-btn>
@@ -113,7 +122,9 @@ export default {
       fat: 0,
       carbs: 0,
       protein: 0
+    //   search: ''
     },
+    search: '',
     list: [],
     shadowList: [],
     dialog: false,
@@ -124,9 +135,9 @@ export default {
         sortable: false,
         value: 'name'
       },
-      { text: 'First Name', value: 'calories' },
-      { text: 'Last Name', value: 'fat' },
-      { text: 'Address', value: 'carbs' },
+      { text: 'First Name', value: 'first_name' },
+      { text: 'Last Name', value: 'last_name' },
+      { text: 'Address', value: 'address' },
       { text: 'Actions', value: 'name', sortable: false }
     ],
     }
@@ -139,8 +150,12 @@ export default {
       const response = await APIService.getTroops()
       this.subordinates = response.data.subordinates
       this.list.push({ value: 1 })
-      this.shadowList.push(Date.now())
+      this.shadowList.push(this.$store.count)
+      console.log(this.shadowList)
       console.log(response.data)
+    },
+    changeIndex() {
+        this.$store.commit('increment')
     },
     editItem (item) {
       this.editedIndex = this.desserts.indexOf(item)
@@ -162,17 +177,21 @@ export default {
       }
       this.close()
     },
-    // add: function() {
-    //   this.list.push({ value: 1 })
-    //   this.shadowList.push(Date.now())
-    // },
-    // remove: function(index) {
-    //   this.list.splice(index, 1);
-    //   this.shadowList.splice(index, 1)
+    // search () {
+
     // }
   },
+  customFilter: {
+  type: Function,
+  default: (items, search, filter) => {
+    this.search = search.toString().toLowerCase()
+    return items.filter(i => (
+      Object.keys(i).some(j => filter(i[j], search))
+    ))
+  }
+},
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 
+class="v-input v-text-field v-text-field--single-line v-input--hide-details theme--light"

@@ -9,7 +9,9 @@ export default new Vuex.Store({
   		status: '',
   		token: localStorage.getItem('token') || '',
         user : {},
-        name: ''  
+        name: '',
+        indexChange: '',
+        count: 1
 	},
 	mutations: {
 		auth_request(state){
@@ -26,7 +28,10 @@ export default new Vuex.Store({
 	  	logout(state){
 	    	state.status = ''
 	    	state.token = ''
-	  	},
+          },
+          changeIndex () {
+
+          }
 	},
 	actions: {
         // login: {
