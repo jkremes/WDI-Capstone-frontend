@@ -6,7 +6,7 @@ module.exports = {
         devtool: 'source-map'
       },
       devServer: {
-        proxy: 'http://localhost:4741'
+        proxy: 'https://mysterious-mesa-43439.herokuapp.com/'
       }
   }
   
