@@ -29,7 +29,7 @@ Vue.config.productionTip = false
 new Vue({
   router,
   store,
-  apiUrl,
+  // apiUrl,
   render: h => h(App)
 }).$mount('#app')
 
