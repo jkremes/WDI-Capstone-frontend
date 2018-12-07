@@ -54,6 +54,8 @@
         </v-dialog>
       </v-toolbar>
       <v-data-table
+        v-model="selected"
+        item-key="_id"
         :headers="headers"
         :items="subordinates"
         :search="search"
@@ -62,7 +64,13 @@
        <!-- v-for="(subordinate, i) in (subordinates)" -->
         <!-- :key="shadowList[i]" -->
         <template slot="items" slot-scope="props">
-          <td>{{ props.last_name }}</td>
+          <td>
+        <v-checkbox
+          v-model="props.selected"
+          primary
+          hide-details
+        ></v-checkbox>
+      </td>
           <td class="text-xs-center">{{ props.item.first_name }}</td>
           <td class="text-xs-center">{{ props.item.last_name }}</td>
           <td class="text-xs-center">{{ props.item.address }}</td>
@@ -117,6 +125,7 @@ export default {
     //   first_name: '',
     //   last_name: '',
     //   address: '',
+      selected: [],
       subordinates: [],
       desserts: [],
       props: [],
@@ -168,10 +177,22 @@ export default {
     changeIndex() {
         this.$store.commit('increment')
     },
-    editItem (item) {
-      this.editedIndex = this.desserts.indexOf(item)
+    async editItem (item) {
+        console.log(item)
+    //   this.editedIndex = this.desserts.indexOf(item)
       this.editedItem = Object.assign({}, item)
+    //   console.log(this.editItem)
       this.dialog = true
+      const itemID = item._id
+      await APIService.updateTroop({
+        item
+        // params: {
+        //     first_name: item.first_name,
+        //     last_name: item.last_name,
+        //     address: item.address,
+        //     id: itemID
+        // }
+      })
     },
     async deleteItem (item) {
         console.log(item)
