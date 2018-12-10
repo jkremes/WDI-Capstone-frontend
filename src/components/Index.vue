@@ -9,13 +9,14 @@
     <div v-if="seen">
         <div id="app">
       <v-app id="login">
-        <h1>Login!</h1>
+        <h1>Change Password!</h1>
           <v-form ref="form">
             <v-container fluid>
       <v-layout align--center justify-center="">
         <v-flex xs12 sm6>
     <v-text-field
       v-model="old_password"
+      type="password"
       label="Old Password"
       required
     ></v-text-field>
