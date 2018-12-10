@@ -39,12 +39,12 @@ https://mysterious-mesa-43439.herokuapp.com/
 
 ## ERD
 
-[ERD](src/assets/IMG_8461.JPG)
+![ERD](src/assets/IMG_8461.JPG)
 
 
 ## WireFrame
 
-![WireFrame](src/assets/IMG_9417 2.JPG)
+![ERD](src/assets/wireframe.JPG)
 
 ## User Stories
 
