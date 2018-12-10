@@ -39,12 +39,12 @@ https://mysterious-mesa-43439.herokuapp.com/
 
 ## ERD
 
-[ERD](/Users/kesselrunlaptop/wdi/projects/Capstone/recall-frontend/cmdr/src/assets/IMG_8461.JPG)
+[ERD](src/assets/IMG_8461.JPG)
 
 
 ## WireFrame
 
-[WireFrame](/Users/kesselrunlaptop/wdi/projects/Capstone/recall-frontend/cmdr/src/assets/IMG_9417 2.JPG)
+![WireFrame](src/assets/IMG_9417 2.JPG)
 
 ## User Stories
 
@@ -145,11 +145,17 @@ Client:
 
 ## App Screenshots
 
-[WireFrame](/Users/kesselrunlaptop/wdi/projects/Capstone/recall-frontend/cmdr/src/assets/Screen Shot 2018-12-09 at 10.49.21 PM.png)
-[WireFrame](/Users/kesselrunlaptop/wdi/projects/Capstone/recall-frontend/cmdr/src/assets/Screen Shot 2018-12-09 at 10.49.30 PM.png)
-[WireFrame](/Users/kesselrunlaptop/wdi/projects/Capstone/recall-frontend/cmdr/src/assets/Screen Shot 2018-12-09 at 10.49.38 PM.png)
-[WireFrame](/Users/kesselrunlaptop/wdi/projects/Capstone/recall-frontend/cmdr/src/assets/Screen Shot 2018-12-09 at 10.49.52 PM.png)
-[WireFrame](/Users/kesselrunlaptop/wdi/projects/Capstone/recall-frontend/cmdr/src/assets/Screen Shot 2018-12-09 at 10.50.42 PM.png)
-[WireFrame](/Users/kesselrunlaptop/wdi/projects/Capstone/recall-frontend/cmdr/src/assets/Screen Shot 2018-12-09 at 10.51.04 PM.png)
+![Home](src/assets/home.png)
+
+![LoggedIn](src/assets/index.png)
+
+![SignUp](src/assets/signup.png)
+
+![SignIn](src/assets/login.png)
+
+![SeeTroops](src/assets/seetroops.png)
+
+![ChangePassword](src/assets/changepassword.png)
+
 
 ## Created by Josh Kreimier
