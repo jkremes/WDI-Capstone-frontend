@@ -36,6 +36,28 @@ https://mysterious-mesa-43439.herokuapp.com/
 10. A user can add a resource by clicking the "New Troop" button.
 11. Once a user has resources they can then edit or delete with the respective buttons found within that table.
 12. From the see troops the user can click the 'home' button which will bring the user back to the index page.
+13. Ensure you install dependencies for app to allow the app to properly run see below for links to these technologies:
+
+- Mongo
+https://www.mongodb.com/
+
+- Mongoose
+https://mongoosejs.com/docs/index.html
+
+- Node
+https://nodejs.org/en/
+
+- Vue
+https://vuejs.org/v2/guide/installation.html
+
+- VueSweetalert2
+https://sweetalert2.github.io/#download
+
+- Vuetify
+https://vuetifyjs.com/en/getting-started/quick-start
+
+use `npm install` in order to get these going!
+
 
 ## ERD
 
