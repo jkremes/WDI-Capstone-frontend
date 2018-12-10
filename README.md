@@ -1,6 +1,6 @@
 cmDr
 
-![Chair Force One Logo](/Users/kesselrunlaptop/wdi/projects/Capstone/recall-frontend/cmdr/src/assets/cmDr3.jpeg)
+![cmDr Logo](src/assets/cmDr3.jpeg)
 
 ## Description
 
