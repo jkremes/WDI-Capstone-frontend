@@ -32,6 +32,7 @@
 </div> -->
     <div id="app">
       <v-app id="login">
+        <h1>Login!</h1>
           <v-form ref="form">
             <v-container fluid>
       <v-layout align--center justify-center="">
@@ -52,6 +53,7 @@
     <v-text-field
       v-model="password"
       label="Password"
+      type="password"
       required
     ></v-text-field>
     <!-- <v-checkbox
@@ -95,6 +97,13 @@
         <div>
           <router-link to="/">Go Back</router-link>
     </div>
+    <v-alert
+      :value="false"
+      color="success"
+      icon="check_circle"
+      outline
+    >
+    </v-alert>
       </v-app>
     </div>
 </template>

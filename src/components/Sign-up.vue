@@ -1,8 +1,42 @@
 <template>
-    <div>
+            <div id="app">
+      <v-app id="login">
         <h1>Sign Up!</h1>
-        <div>
-        <form>
+          <v-form ref="form">
+            <v-container fluid>
+      <v-layout align--center justify-center="">
+
+        <v-flex xs12 sm6>
+    <v-text-field
+      v-model="name"
+      label="Name"
+      required
+    ></v-text-field>
+    <v-text-field
+      v-model="email"
+      label="E-mail"
+      required
+    ></v-text-field>
+    <v-text-field
+      v-model="password"
+      label="Password"
+      type="password"
+      required
+    ></v-text-field>
+        <v-text-field
+      v-model="password_confirmation"
+      label="Confirm Password"
+      type="password"
+      required
+    ></v-text-field>
+    <v-btn
+    type="submit" @click="signUp">submit</v-btn>
+    <!-- <v-btn @click="clear">clear</v-btn> -->
+      </v-flex>
+          </v-layout>
+     </v-container>
+  </v-form>
+        <!-- <form>
             <label for="name">Name</label>
             <div>
                 <input id="name" type="text" v-model="name" required autofocus>
@@ -27,12 +61,14 @@
                     Register
                 </button>
             </div>
-        </form>
-        </div>
+        </form> -->
+        <!-- </div> -->
+        <!-- </div> -->
         <br>
         <div>
           <router-link to="/">Go Back</router-link>
     </div>
+      </v-app>
     </div>
 </template>
 
@@ -58,6 +94,11 @@ export default {
           password: this.password,
           password_confirmation: this.password_confirmation
         })
+        this.$swal(
+          'Right on!',
+          `${this.name}, you've been added!`,
+          'success'
+        )
         this.$router.push({ name: 'login' })
         } catch (error) {
           this.$swal(
