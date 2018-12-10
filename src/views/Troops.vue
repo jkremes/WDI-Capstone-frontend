@@ -1,11 +1,14 @@
 <template>
   <div class="troops">
     <img alt="cmDr" src="../assets/cmDr3.jpeg">
+    <div>
+        <router-link to="/">Home</router-link>
+    </div>
     <h1>See your troops</h1>
     <!-- <button type="submit" @click="getTroops">display troops</button> -->
-    <v-btn outline fab color="teal" @click="getTroops">
-      <v-icon>list</v-icon>
-    </v-btn>
+    <!-- <v-btn outline fab color="teal" @click="getTroops"> -->
+      <!-- <v-icon>list</v-icon> -->
+    <!-- </v-btn> -->
     <DisplayTroops/>
     <!-- <div>
       <form>

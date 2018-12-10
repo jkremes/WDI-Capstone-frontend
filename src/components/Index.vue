@@ -1,12 +1,50 @@
 <template>
   <div class="index">
     <h1>{{ msg }}</h1>
-    <h3>Do stuff now!</h3>
+    <h3>Lets work!</h3>
     <button  v-on:click="seen = !seen">Change Password</button> |
     <button type="submit" @click="signOut">Sign Out!</button> |
     <button @click="seeTroops">See Troops</button>
      <!-- <v-btn color="success">Success</v-btn> -->
     <div v-if="seen">
+        <div id="app">
+      <v-app id="login">
+        <h1>Login!</h1>
+          <v-form ref="form">
+            <v-container fluid>
+      <v-layout align--center justify-center="">
+        <v-flex xs12 sm6>
+    <v-text-field
+      v-model="old_password"
+      label="Old Password"
+      required
+    ></v-text-field>
+    <v-text-field
+      v-model="new_password"
+      label="Password"
+      type="password"
+      required
+    ></v-text-field>
+    <v-btn
+    type="submit" @click="changePassword">submit</v-btn>
+    <!-- <v-btn @click="clear">clear</v-btn> -->
+      </v-flex>
+          </v-layout>
+     </v-container>
+  </v-form>
+        <br>
+        <div>
+          <router-link to="/">Go Back</router-link>
+    </div>
+    <v-alert
+      :value="false"
+      color="success"
+      icon="check_circle"
+      outline
+    >
+    </v-alert>
+      </v-app>
+    <!-- </div>
         <form>
             <label for="old_password" >Old Password</label>
             <div>
@@ -23,6 +61,8 @@
                 </button>
             </div>
         </form>
+    </div> -->
+        </div>
     </div>
   </div>
 </template>
@@ -52,10 +92,23 @@ export default {
     },
     async changePassword (e) {
         e.preventDefault()
-        await APIService.changePassword({
+        try {
+            await APIService.changePassword({
             old_password: this.old_password,
             new_password: this.new_password
         })
+        this.$swal(
+          'Great!',
+          `Password changed`,
+          'success'
+        )
+        } catch (error) {
+            this.$swal(
+          'Sorry!',
+          `Something went wrong, try again.`,
+          'error'
+        )
+        }
     },
     seeTroops () {
         this.$router.push({ name: 'troops' })
