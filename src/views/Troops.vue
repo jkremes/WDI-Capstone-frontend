@@ -2,7 +2,7 @@
   <div class="troops">
     <img alt="cmDr" src="../assets/cmDr3.jpeg">
     <div>
-        <router-link to="/">Home</router-link>
+        <router-link to="/index">Home</router-link>
     </div>
     <h1>See your troops</h1>
     <!-- <button type="submit" @click="getTroops">display troops</button> -->
